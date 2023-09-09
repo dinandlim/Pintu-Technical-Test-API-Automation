@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "50bb9e2d-425f-49c5-8e98-423c358002a2",
+		"name": "Pintu - Automation Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21011359"
+	},
+	"item": [
+		{
+			"name": "GET response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('validate that respond return code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test('validate that data not null or empty', function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.not.be.empty;",
+							"})",
+							"",
+							"pm.test(\"validate type data of 'userId' is Integer\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    for (var i = 0; i < jsonData.length; i++) ",
+							"    {",
+							"        pm.expect(jsonData.userId).to.be.a('number');",
+							"    }",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"validate type data of 'id' is Integer\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    for (var i = 0; i < jsonData.length; i++) ",
+							"    {   ",
+							"        pm.expect(jsonData.id).to.be.a('number');",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"validate type data of 'title' is String\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    for (var i = 0; i < jsonData.length; i++) ",
+							"    {",
+							"        pm.expect(jsonData.title).to.be.a('string');",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"validate type data of 'body' is String\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    for (var i = 0; i < jsonData.length; i++) ",
+							"    {",
+							"        pm.expect(jsonData.body).to.be.a('string');",
+							"    }",
+							"});",
+							"",
+							"//checking type data for userId, id, title, and body is undefined",
+							"var jsonData = pm.response.json();",
+							"console.log(typeof(jsonData.userId))",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Input Post Payload",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('validate that respond return code is 201', function () {",
+							"    pm.response.to.have.status(201);",
+							"})",
+							"",
+							"pm.test('validate that data not null or empty', function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.not.be.empty;",
+							"})",
+							"",
+							"pm.test('validate that response has the correct response compared to the inputted payload', function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.title).to.eql(pm.variables.get(\"title\"));",
+							"    pm.expect(jsonData.body).to.eql(pm.variables.get(\"body\"));",
+							"    pm.expect(jsonData.userId).to.eql(pm.variables.get(\"userId\"));",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"{{title}}\",\n    \"body\": \"{{body}}\",\n    \"userId\" : \"{{userId}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

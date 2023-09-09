@@ -1,0 +1,27 @@
+{
+	"id": "d70f4719-4a51-401e-8d28-ddcf76487756",
+	"values": [
+		{
+			"key": "title",
+			"value": "recommendation",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "body",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2023-09-09T18:29:52.216Z",
+	"_postman_exported_using": "Postman/10.17.7"
+}
